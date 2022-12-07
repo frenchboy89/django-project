@@ -2,9 +2,15 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 
+from blog.models import Blog, Car
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the blog index.")
+    blogs = Blog.object.all()
+    total = len(blogs)
+    return HttpResponse(f"The total number of blog objects in the Blog class is {total}")
+
+    
+
 def about(request):
     return HttpResponse("Hello,world. You're at the blog about")   
 def pricing(request):
