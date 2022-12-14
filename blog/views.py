@@ -1,27 +1,55 @@
+from django.utils import timezone
 from django.shortcuts import render
 
 from django.http import HttpResponse
 
-from blog.models import Blog, Car
+from blog.models import Blog, Car, Book
 
 def index(request):
     blogs = Blog.objects.all()
     total = len(blogs)
-    return HttpResponse(f"The total number of blog objects in the Blog class is {total}")
+    now = timezone.now()
+    number = 2+2
+    context = {
+        "blogs": blogs,
+        "average": total,
+        "now":now,
+        "number": number,
+    }
+    return render(request, 'index.html',context) 
 
 
 
 def about(request):
-    return HttpResponse("Hello,world. You're at the blog about")  
+    books =Book.objects.all()
+    total = len(books)
+    now = timezone.now()
+    number = 2+6
+    context = {
+        "books": books,
+        "average": total,
+        "now":now,
+        "number": number,
+    }
+    
+    return render(request, "about.html",context)
 
 def pricing(request):
-    return HttpResponse("Hello,world. You're at the blog pricing")
+    cars = Car.objects.all()
+
+
+    context = {
+        "cars": cars,
+         
+    }
+
+    return render(request, "pricing.html",context)
 
 def contact(request):
-    return HttpResponse("Hello,world. You're at the blog contact us")
-         
+    return render(request, "contact.html" )
+
 def dashboard(request):
-    return HttpResponse("Hello,world. You're at the blog dashboard")             
+    return render(request, "dashboard.html")             
 
 
 
