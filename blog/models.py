@@ -23,6 +23,7 @@ class Car(models.Model):
 
     def __str__(self) -> str:
         return self.model_name
+        
 class Book(models.Model):
     title = models.CharField(max_length=50)
     author = models.CharField(max_length=30)
