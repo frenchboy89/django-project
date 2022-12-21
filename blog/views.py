@@ -49,7 +49,11 @@ def contact(request):
     return render(request, "contact.html" )
 
 def dashboard(request):
-    return render(request, "dashboard.html")             
+    return render(request, "dashboard.html")     
+
+def trys(request):
+    return render(request, "try.html")  
+
 
 
 
