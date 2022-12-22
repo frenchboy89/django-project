@@ -1,13 +1,19 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-    
-              
+<div class="card-deck m-4 ">
+{% for items in books %}   
+    <div class="card">
 
-    {% for items in books %}
-    <h1>{{items.title}}</h1>
-    <h2>{{items.author}}</h2>
-    <p>{{items.Publicationdate}}</p>
-    {% endfor %}
+      <img class="card-img-top" src="{% static 'img/1.jpg' %}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{items.title}}</h5>
+        <p class="card-text">{{items.excerpt|truncatewords:30}}</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+{% endfor %}   
+</div>
 
     {% endblock content  %}
 

@@ -27,11 +27,12 @@ class Car(models.Model):
 class Book(models.Model):
     title = models.CharField(max_length=50)
     author = models.CharField(max_length=30)
+    excerpt = models.TextField()
     publication_date = models.DateField()
-    image = models.ImageField( blank=True)
+    image = models.ImageField( blank=True, upload_to="book_img")
     is_trending = models.BooleanField(True) 
     num_pages = models.IntegerField()
-    material = models.CharField(max_length=30)
+    material = models.FileField(blank=True, upload_to="book_docs" )
     isbn_number = models.PositiveIntegerField()
     book_document = models.FileField( blank=True)
 

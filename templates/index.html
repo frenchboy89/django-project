@@ -1,12 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
-
-    
-    {% for files in blogs %}
-    <h1>{{files.title}}</h1>
-    <h2>{{files.subtitle}}</h2>
-    <p>{{files.content}}</p>
-    {% endfor %}
-
+<div class="row m-4 ">
+{% for item in blogs %}    
+    <div class="col-sm-6 my-2">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{item.title}}</h5>
+          <p class="card-text">{{item.subtitle}}</p>
+          <a href="#" class="btn btn-primary">Read More...</a>
+        </div>
+      </div>
+    </div>
+{% endfor %}
+</div>
     
     {% endblock content  %}
