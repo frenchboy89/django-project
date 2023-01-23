@@ -26,10 +26,15 @@ class Car(models.Model):
         return self.model_name
         
 class Book(models.Model):
+    ATTR = (
+        ("BEST SELLING", "BEST SELLING"),
+        ("TOP 100", "TOP 100"),
+    )
     title = models.CharField(max_length=50)
     author = models.CharField(max_length=30)
     excerpt = models.TextField()
     publication_date = models.DateField()
+    attribute = models.CharField(max_length=100, choices=ATTR, blank=True)
     image = models.ImageField( blank=True, upload_to="book_img")
     is_trending = models.BooleanField(True) 
     num_pages = models.IntegerField()
