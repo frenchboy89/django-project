@@ -4,20 +4,20 @@
 <div  class="container pt-4 ">
   <div class="row">
     {% for items in books %}
-    <div class="col-md-4">
-      <div class="card mb-4">
-        <img class="card-img-top" src="{{items.image.url}}" alt="Card image cap">
+    <div class="col-md-4 my-4">
+      <div class="card my-4 h-100 shadow ">
+        <img class="card-img-top" height="50%" width="100%" src="{{items.image.url}}" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">{{items.title}}</h5>
           <p class="card-text">{{items.excerpt}}</p>
-          <a href="#" class="btn btn-primary">View book</a>
+          <a href="{% url 'book_details' items.id %}" class="btn btn-primary">View book</a>
         </div>
       </div>
     </div>
    {% endfor %} 
   </div>
 </div>
-
+<br>
     {% endblock content  %}
 
    

@@ -18,9 +18,16 @@ def index(request):
     }
     return render(request, 'index.html',context) 
 
+def blog_details(request, pk):
+    blog = Blog.objects.get(id=pk)
+    context = {
+        "blog":blog
+    }
+
+    return render(request,'blog_details.html',context)
 
 
-def about(request):
+def book_list(request):
     books =Book.objects.all()
     total = len(books)
     now = timezone.now()
@@ -32,7 +39,23 @@ def about(request):
         "number": number,
     }
     
-    return render(request, "about.html",context)
+    return render(request, "books.html",context)
+
+def book_details(request, pk):
+    book = Book.objects.get(id=pk)
+    pdf = book.material.url
+    context = {
+        "book":book, 
+        "pdf" :pdf,
+    }
+
+    return render(request,'book_details.html',context)
+    
+
+
+
+
+
 
 def pricing(request):
     cars = Car.objects.all()

@@ -35,7 +35,7 @@ class Book(models.Model):
     num_pages = models.IntegerField()
     material = models.FileField(blank=True, upload_to="book_docs" )
     isbn_number = models.PositiveIntegerField()
-    book_document = models.FileField( blank=True)
+   
 
     def __str__(self) -> str:
         return self.title
