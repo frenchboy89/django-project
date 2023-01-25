@@ -2,6 +2,9 @@
 {% load static %}
 {% block content %}
 <div  class="container pt-4 ">
+  {% for cats in categories %}
+  <a href="{% url 'category' cats.slug %}" class="btn btn-secondary">{{cats.name}}</a>
+  {% endfor %}
   <div class="row">
     {% for items in books %}
     <div class="col-md-4 my-4">

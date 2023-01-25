@@ -13,6 +13,7 @@ urlpatterns = [
     path('try/',views.trys, name= "try"),
     path('blog-details/<pk>/',views.blog_details, name="blog_details"),
     path('book-details/<pk>/',views.book_details, name="book_details"),
+    path('category-list/<slug>/',views.category_list, name="category"),
     
 
 

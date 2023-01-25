@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils.text import slugify
 
 class Blog(models.Model):
     title = models.CharField(max_length=225)
@@ -24,7 +24,20 @@ class Car(models.Model):
 
     def __str__(self) -> str:
         return self.model_name
-        
+
+
+class Category(models.Model):
+  name = models.CharField(max_length=100)
+  slug = models.SlugField(max_length=100, blank=True)
+  
+  def __str__(self) -> str:
+    return f'{self.name}'
+
+  def save(self, *args, **kwargs):
+    self.slug = slugify(self.name)
+    return super().save(self, *args, **kwargs)
+
+
 class Book(models.Model):
     ATTR = (
         ("BEST SELLING", "BEST SELLING"),
@@ -33,6 +46,7 @@ class Book(models.Model):
     title = models.CharField(max_length=50)
     author = models.CharField(max_length=30)
     excerpt = models.TextField()
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True)
     publication_date = models.DateField()
     attribute = models.CharField(max_length=100, choices=ATTR, blank=True)
     image = models.ImageField( blank=True, upload_to="book_img")
@@ -41,34 +55,5 @@ class Book(models.Model):
     material = models.FileField(blank=True, upload_to="book_docs" )
     isbn_number = models.PositiveIntegerField()
    
-
     def __str__(self) -> str:
         return self.title
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 
-from blog.models import Blog, Car, Book
+from blog.models import Blog, Car, Book, Category
 
 def index(request):
     blogs = Blog.objects.all()
@@ -30,13 +30,12 @@ def blog_details(request, pk):
 def book_list(request):
     books =Book.objects.all()
     total = len(books)
-    now = timezone.now()
-    number = 2+6
+    categories = Category.objects.all
+
     context = {
         "books": books,
         "average": total,
-        "now":now,
-        "number": number,
+        "categories": categories,
     }
     
     return render(request, "books.html",context)
@@ -51,7 +50,14 @@ def book_details(request, pk):
 
     return render(request,'book_details.html',context)
     
-
+def category_list(request, slug):
+  category = Category.objects.get(slug=slug)
+  books = Book.objects.filter(category=category)
+  context = {
+    'books': books,
+    'category': category,
+  }
+  return render(request, 'category_list.html', context)
 
 
 
